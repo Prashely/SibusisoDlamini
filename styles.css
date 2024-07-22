@@ -1227,3 +1227,55 @@ input[type=number] {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Ebook Page */
+.form-container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--first-color-alt);
+}
+
+.form-container form {
+  background-color: white;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.form-container label {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--first-color);
+  font-size: var(--h3-font-size);
+}
+
+.form-container input {
+  width: 100%;
+  background-color: var(--input-color);
+  color: var(--text-color);
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  border: none;
+  outline: none;
+  padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.form-container button {
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--first-color);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.form-container button:hover {
+  background-color: var(--first-color-alt);
+}

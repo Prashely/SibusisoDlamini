@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Free Ebook</title>
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="userForm">
+        <label for="Name">Name:</label>
+        <input type="text" id="name" name="Name" required />
+        <small id="nameError" class="error"></small>
+        <br />
+        <label for="Email">Email:</label>
+        <input type="email" id="email" name="Email" required />
+        <small id="emailError" class="error"></small>
+        <br />
+        <button type="submit">Download Ebook</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Clear previous errors
+          document.getElementById("nameError").textContent = "";
+          document.getElementById("emailError").textContent = "";
+
+          let valid = true;
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+
+          // Name validation
+          if (!name) {
+            document.getElementById("nameError").textContent =
+              "Name is required.";
+            valid = false;
+          } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+            document.getElementById("nameError").textContent =
+              "Name can only contain letters and spaces.";
+            valid = false;
+          }
+
+          // Email validation
+          if (!email) {
+            document.getElementById("emailError").textContent =
+              "Email is required.";
+            valid = false;
+          } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById("emailError").textContent =
+              "Invalid email format.";
+            valid = false;
+          }
+
+          if (valid) {
+            // Prepare data for submission
+            const formData = new FormData();
+            formData.append("Name", name);
+            formData.append("Email", email);
+
+            // AJAX request
+            fetch(
+              "https://script.google.com/macros/s/AKfycbypLNg7CvrRsBxqwc_uwZXNR6LPUSZ4UMF9IZKTYFWR818X7hgsKhMqsylOjD_hKaDLuA/exec",
+              {
+                method: "POST",
+                body: formData,
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.result === "success") {
+                  // Trigger PDF download
+                  const link = document.createElement("a");
+                  link.href = "./Ebook/free-ebook.pdf"; // Update with your actual PDF file path
+                  link.download = "Introduction Cryptocurrency & Bitcoin.pdf"; // Update with your desired file name
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                } else {
+                  alert(
+                    "There was an error submitting the form. Please try again."
+                  );
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert(
+                  "There was an error submitting the form. Please try again."
+                );
+              });
+          }
+        });
+    </script>
+  </body>
+</html>
