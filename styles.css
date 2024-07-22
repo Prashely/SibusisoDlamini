@@ -1234,7 +1234,7 @@ input[type=number] {
   height: 100vh;
   align-items: center;
   justify-content: center;
-  background-color: var(--first-color);
+  background-color: var(--body-color);
 }
 
 .form-container form {
@@ -1242,6 +1242,7 @@ input[type=number] {
   margin: 1rem;
   padding: 2rem;
   border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .form-container label {
@@ -1259,23 +1260,17 @@ input[type=number] {
   font-size: var(--normal-font-size);
   border: none;
   outline: none;
-  padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-radius: 0.5rem;
 }
 
 .form-container button {
   font-weight: bold;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--first-color);
+  margin: 1rem 0;
   color: white;
   border: none;
   border-radius: 0.5rem;
   width: 100%;
   cursor: pointer;
   transition: all 0.5s ease;
-}
-
-.form-container button:hover {
-  background-color: var(--first-color-alt);
 }
