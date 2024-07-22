@@ -181,6 +181,13 @@ img {
   background-color: var(--body-color);
 }
 
+/* Universal approach that covers most browsers */
+input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: textfield;
+}
+
 /*==================== NAV ====================*/
 .nav {
   max-width: 968px;
@@ -618,6 +625,7 @@ img {
 
 .join__links {
   color: var(--first-color);
+  text-decoration: underline;
 }
 
 /*==================== PORTFOLIO ====================*/
