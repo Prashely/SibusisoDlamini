@@ -405,7 +405,7 @@ input[type=number] {
 
 .button--submit {
   font-size: large;
-  font-weight: 550;
+  font-weight: var(--font-medium);
   border: none;
 
 }
