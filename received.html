@@ -30,8 +30,15 @@
         margin-right: 1px;
       }
 
+      @media (max-width: 600px) {
+        .checked {
+          font-size: 1.7rem;
+        }
+      }
+
       .success__text {
         margin-bottom: 5rem;
+        margin: 0 1.5rem 3rem;
       }
 
       p {
@@ -46,10 +53,10 @@
     <section>
       <div class="check--submitted">
         <div>
-          <i class="uil uil-check-circle checked"></i>
-        </div>
-        <div>
-          <h1 class="section__title">Enquiry Submitted Successfully!</h1>
+          <h1 class="section__title">
+            <i class="uil uil-check-circle checked"></i>Enquiry Submitted
+            Successfully!
+          </h1>
         </div>
       </div>
       <div class="success__text">
@@ -60,10 +67,8 @@
           Keep an eye out for an email from
           <a class="our__mail" href="mailto:contact@dlaminisibusiso.com"
             >contact@dlaminisibusiso.com</a
-          >.
-          <br />
-          Our emails may be directed to your spam folder,we are actively working
-          to resolve this issue.
+          >. Our emails may be directed to your spam folder,we are actively
+          working to resolve this issue.
         </p>
       </div>
       <div class="return__home">
