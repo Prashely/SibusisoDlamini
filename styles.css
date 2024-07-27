@@ -403,6 +403,13 @@ input[type=number] {
   color: var(--first-color-alt);
 }
 
+.button--submit {
+  font-size: large;
+  font-weight: 550;
+  border: none;
+
+}
+
 .button--white {
   background-color: #fff;
   color: var(--first-color);
