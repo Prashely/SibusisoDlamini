@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crypto Slideshow</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+      }
+
+      .slide {
+        display: none;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .slide img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .slide .price {
+        font-size: 1.2em;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slideshow-container" id="slideshow">
+      <!-- Slides will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+      const tokenIds = ["bitcoin", "ethereum", "ripple"]; // Add more token IDs as needed
+
+      const apiURL = "https://api.coingecko.com/api/v3/coins/markets";
+      const currency = "usd";
+
+      async function fetchTokenData() {
+        const response = await fetch(
+          `${apiURL}?vs_currency=${currency}&ids=${tokenIds.join(",")}`
+        );
+        return response.json();
+      }
+
+      function createSlide(token) {
+        const slide = document.createElement("div");
+        slide.classList.add("slide");
+
+        const logo = document.createElement("img");
+        logo.src = token.image;
+        logo.alt = `${token.name} logo`; // Add alt attribute for accessibility
+        slide.appendChild(logo);
+
+        const name = document.createElement("h2");
+        name.textContent = token.name;
+        slide.appendChild(name);
+
+        const priceElement = document.createElement("p");
+        priceElement.classList.add("price");
+        priceElement.textContent = `Price: $${token.current_price}`;
+        slide.appendChild(priceElement);
+
+        return slide;
+      }
+
+      async function initSlideshow() {
+        const slideshowContainer = document.getElementById("slideshow");
+        const tokens = await fetchTokenData();
+
+        tokens.forEach((token) => {
+          const slide = createSlide(token);
+          slideshowContainer.appendChild(slide);
+        });
+
+        let currentIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        slides[currentIndex].style.display = "block";
+
+        setInterval(() => {
+          slides[currentIndex].style.display = "none";
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].style.display = "block";
+        }, 3000); // Change slide every 3 seconds
+      }
+
+      document.addEventListener("DOMContentLoaded", initSlideshow);
+    </script>
+  </body>
+</html>

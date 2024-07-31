@@ -182,7 +182,7 @@ img {
 }
 
 /* Universal approach that covers most browsers */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
   appearance: textfield;
@@ -407,7 +407,6 @@ input[type=number] {
   font-size: large;
   font-weight: var(--font-medium);
   border: none;
-
 }
 
 .button--white {
@@ -429,7 +428,7 @@ input[type=number] {
 
 .about__description {
   text-align: center;
-  margin-bottom: var(--mb-2-5);
+  margin-bottom: 0;
 }
 
 .about__info {
@@ -457,6 +456,19 @@ input[type=number] {
 .about__buttons {
   display: flex;
   justify-content: center;
+}
+
+.read-more-btn {
+  margin-top: 0;
+  color: var(--first-color);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: small;
+  cursor: pointer;
+}
+
+.read-more-text {
+  display: none;
 }
 
 /*==================== QUALIFICATION ====================*/
@@ -681,7 +693,7 @@ input[type=number] {
   right: -0.5rem;
 }
 
-.swiper-container-horizontal>.swiper-pagination-bullets {
+.swiper-container-horizontal > .swiper-pagination-bullets {
   bottom: -2.5rem;
 }
 
@@ -1106,6 +1118,10 @@ input[type=number] {
     justify-content: initial;
   }
 
+  .read-more-btn {
+    text-align: initial;
+  }
+
   .qualification__tabs {
     justify-content: center;
   }
@@ -1181,13 +1197,12 @@ input[type=number] {
   }
 
   .footer__copy {
-    margin-top: 4.5rem;
+    margin-top: 2.5rem;
   }
 }
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
-
   .header,
   .main,
   .footer__container {
@@ -1222,7 +1237,7 @@ input[type=number] {
     right: -3.5rem;
   }
 
-  .swiper-container-horizontal>.swiper-pagination-bullets {
+  .swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: -4.5rem;
   }
 

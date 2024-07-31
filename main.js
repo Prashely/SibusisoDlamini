@@ -49,6 +49,20 @@ skillsHeader.forEach((el) => {
   el.addEventListener("click", toggleSkills);
 });
 
+/*==================== READ MORE FEATURE ====================*/
+function toggleReadMore() {
+  const readMoreText = document.querySelector(".read-more-text");
+  const readMoreBtn = document.querySelector(".read-more-btn");
+
+  if (readMoreText.style.display === "none") {
+    readMoreText.style.display = "inline";
+    readMoreBtn.innerText = "Read less...";
+  } else {
+    readMoreText.style.display = "none";
+    readMoreBtn.innerText = "Read more...";
+  }
+}
+
 /*==================== QUALIFICATION TABS ====================*/
 const tabs = document.querySelectorAll("[data-target]");
 const tabContents = document.querySelectorAll("[data-content]");
