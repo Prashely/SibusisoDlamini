@@ -53,13 +53,19 @@ skillsHeader.forEach((el) => {
 function toggleReadMore() {
   const readMoreText = document.querySelector(".read-more-text");
   const readMoreBtn = document.querySelector(".read-more-btn");
+  const readLessBtn = document.querySelector(".read-less-btn");
 
-  if (readMoreText.style.display === "none") {
+  if (
+    readMoreText.style.display === "none" ||
+    readMoreText.style.display === ""
+  ) {
     readMoreText.style.display = "inline";
-    readMoreBtn.innerText = "Read less...";
+    readMoreBtn.style.display = "none";
+    readLessBtn.style.display = "inline";
   } else {
     readMoreText.style.display = "none";
-    readMoreBtn.innerText = "Read more...";
+    readMoreBtn.style.display = "inline";
+    readLessBtn.style.display = "none";
   }
 }
 
