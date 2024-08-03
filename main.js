@@ -69,6 +69,85 @@ function toggleReadMore() {
   }
 }
 
+/*==================== TOKENS TOP 10 ====================*/
+const apiURL = "https://api.coingecko.com/api/v3/coins/markets";
+const currency = "zar"; // Change to South African Rand (ZAR)
+const limit = 10;
+const updateInterval = 30000; // 1 hour in milliseconds
+let previousPrices = {};
+
+async function fetchTokenData() {
+  const response = await fetch(
+    `${apiURL}?vs_currency=${currency}&order=market_cap_desc&per_page=${limit}&page=1`
+  );
+  if (!response.ok) {
+    console.error("Failed to fetch data:", response.statusText);
+    return [];
+  }
+  return response.json();
+}
+
+function createTickerItem(token) {
+  const tickerItem = document.createElement("div");
+  tickerItem.classList.add("ticker-item");
+
+  const logo = document.createElement("img");
+  logo.src = token.image;
+  logo.alt = `${token.name} logo`;
+  tickerItem.appendChild(logo);
+
+  const name = document.createElement("span");
+  name.textContent = token.name;
+  name.classList.add("name");
+  tickerItem.appendChild(name);
+
+  const priceElement = document.createElement("span");
+  priceElement.classList.add("price");
+  priceElement.textContent = `R${token.current_price.toFixed(2)}`;
+
+  // Set color based on price change
+  if (previousPrices[token.id] !== undefined) {
+    priceElement.style.color =
+      token.current_price > previousPrices[token.id] ? "green" : "red";
+  }
+  previousPrices[token.id] = token.current_price;
+  tickerItem.appendChild(priceElement);
+
+  return tickerItem;
+}
+
+async function initTicker() {
+  const tickerContainer = document.getElementById("ticker");
+  const tokens = await fetchTokenData();
+
+  if (!tokens.length) {
+    console.error("No tokens found or failed to fetch.");
+    return;
+  }
+
+  // Clear previous items
+  tickerContainer.innerHTML = "";
+
+  // Create and append ticker items
+  const items = tokens.map((token) => createTickerItem(token));
+  items.forEach((item) => tickerContainer.appendChild(item));
+
+  // Duplicate the ticker items for continuous scrolling
+  items.forEach((item) => tickerContainer.appendChild(item.cloneNode(true)));
+
+  // Set container width to accommodate all ticker items
+  tickerContainer.style.width = `${tickerContainer.scrollWidth}px`;
+
+  // Reset animation
+  tickerContainer.style.animation = "none";
+  tickerContainer.offsetHeight; // Trigger reflow
+  tickerContainer.style.animation = "ticker 60s linear infinite";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initTicker();
+  setInterval(initTicker, updateInterval); // Update prices every hour
+});
 /*==================== QUALIFICATION TABS ====================*/
 const tabs = document.querySelectorAll("[data-target]");
 const tabContents = document.querySelectorAll("[data-content]");
