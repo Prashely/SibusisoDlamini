@@ -419,6 +419,10 @@ input[type="number"] {
 }
 
 /*==================== ABOUT ====================*/
+.about {
+  padding-bottom: .5rem;
+}
+
 .about__img {
   width: 200px;
   border-radius: 0.5rem;
@@ -476,6 +480,8 @@ input[type="number"] {
 .tokens {
   display: flex;
   justify-content: center;
+  margin-top: 0;
+  padding: 0;
 }
 
 .ticker-container {
